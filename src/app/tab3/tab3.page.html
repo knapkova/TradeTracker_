@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-title> Settings</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,6 +10,71 @@
       <ion-title size="large">Tab 3</ion-title>
     </ion-toolbar>
   </ion-header>
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Credentials setup</ion-card-title>
+  </ion-card-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Saved credentials</ion-card-title>
+      <ion-card-subtitle>Unhide api keys</ion-card-subtitle>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-input type="password" label="Trading api key" value="myapikey">
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input>
+      <ion-input type="password" label="Revolut api key" value="myapikey">
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>API keys for authorization</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-select label="Select trading platform" placeholder="Select platform">
+        <ion-select-option value="apple">Trading 212</ion-select-option>
+        <ion-select-option value="banana">Revolut</ion-select-option>
+        <ion-select-option value="orange">XTB</ion-select-option>
+      </ion-select>
+
+      <ion-input label="API key" placeholder="Enter API key"></ion-input>
+      <ion-button expand="block">Save</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-card>
+
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>System settings</ion-card-title>
+  </ion-card-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Notifications</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Enable notifications</ion-label>
+        <ion-toggle slot="end"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Theme</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Dark mode</ion-label>
+        <ion-toggle slot="end"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-card>
+
+
 </ion-content>
