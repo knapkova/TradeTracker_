@@ -13,9 +13,14 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-list>
+  <ion-list [inset]="true">
+    <ion-list-header>
+      <ion-label>212 stocks</ion-label>
+    </ion-list-header>
     <ion-item *ngFor="let info of tradingInfo">
-      <ion-label>{{ info }}</ion-label>
+      <ion-label>Ticker: {{ info.ticker }}<br>
+        Current Price: {{ info.currentPrice }}<br>
+        Quantity: {{ info.quantity }}</ion-label>
     </ion-item>
   </ion-list>
 

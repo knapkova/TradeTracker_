@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "https://live.trading212.com",
+    "secure": false,
+    "changeOrigin": true
+    }
+  }
+
