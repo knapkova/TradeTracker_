@@ -13,10 +13,27 @@
     </ion-toolbar>
   </ion-header>
 
+  <ion-card>
+    <ion-card-header>
+      <h2>Total Value: {{ totalValue | currency }}</h2>
+      <h2>Overall Holding: {{ overallHolding | currency }}</h2>
+    </ion-card-header>     
+</ion-card>
+
+<ion-card>
+    <ion-card-header>
+      <h2>Stocks Distribution</h2>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas id="doughnutChart"></canvas>
+    </ion-card-content>
+  </ion-card>
+
   <ion-list [inset]="true">
     <ion-list-header>
       <ion-label>212 stocks</ion-label>
     </ion-list-header>
+    
     <ion-item *ngFor="let info of tradingInfo">
       <ion-label>Ticker: {{ info.ticker }}<br>
         Current Price: {{ info.currentPrice }}<br>
