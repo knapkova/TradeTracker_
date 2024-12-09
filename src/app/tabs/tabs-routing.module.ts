@@ -1,38 +1,38 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { TabsPage } from './tabs.page';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { TabsPage } from "./tabs.page";
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: "tabs",
     component: TabsPage,
     children: [
       {
-        path: 'overview',
+        path: "overview",
         loadChildren: () =>
-          import('../tab1/tab1.module').then((m) => m.Tab1PageModule),
+          import("../tab1/tab1.module").then((m) => m.Tab1PageModule),
       },
       {
-        path: 'neviemzatial',
+        path: "neviemzatial",
         loadChildren: () =>
-          import('../tab2/tab2.module').then((m) => m.Tab2PageModule),
+          import("../tab2/tab2.module").then((m) => m.Tab2PageModule),
       },
       {
-        path: 'settings',
+        path: "settings",
         loadChildren: () =>
-          import('../tab3/tab3.module').then((m) => m.Tab3PageModule),
+          import("../tab3/tab3.module").then((m) => m.Tab3PageModule),
       },
       {
-        path: '',
-        redirectTo: 'tabs/overview',
-        pathMatch: 'full',
+        path: "",
+        redirectTo: "overview",
+        pathMatch: "full",
       },
     ],
   },
   {
-    path: '',
-    redirectTo: '/tabs/overview',
-    pathMatch: 'full',
+    path: "",
+    redirectTo: "/tabs/overview",
+    pathMatch: "full",
   },
 ];
 
