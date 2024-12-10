@@ -35,14 +35,8 @@
       <ion-card-title>API keys for authorization</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-select label="Select trading platform" placeholder="Select platform">
-        <ion-select-option value="apple">Trading 212</ion-select-option>
-        <ion-select-option value="banana">Revolut</ion-select-option>
-        <ion-select-option value="orange">XTB</ion-select-option>
-      </ion-select>
-
-      <ion-input label="API key" placeholder="Enter API key"></ion-input>
-      <ion-button expand="block">Save</ion-button>
+      <ion-input type = "password" label="API key" [(ngModel)]="apiKey" placeholder="Enter Trading API key"></ion-input>
+      <ion-button expand="block" (click)="saveApiKey()">Save</ion-button>
     </ion-card-content>
   </ion-card>
 </ion-card>
@@ -70,7 +64,7 @@
     <ion-card-content>
       <ion-item>
         <ion-label>Dark mode</ion-label>
-        <ion-toggle slot="end"></ion-toggle>
+        <ion-toggle></ion-toggle>
       </ion-item>
     </ion-card-content>
   </ion-card>

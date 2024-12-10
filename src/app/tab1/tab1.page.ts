@@ -14,14 +14,22 @@ export class Tab1Page implements OnInit {
   tradingInfo: trading212_response_all_open_positions[] = [];
   totalValue = 0;
   overallHolding = 0;
+  warningMessage: string = "";
 
   constructor(
     private tradingService: Trading212Service,
     private appStorageService: AppStorageService
   ) {}
 
-  ngOnInit(): void {
-    this.tradingService.getTradingInfo().subscribe((data) => {
+  async ngOnInit(): Promise<void> {
+    const apiKey = await this.tradingService.getApiKey();
+    if (!apiKey) {
+      this.warningMessage =
+        "API key is not set. Please go to Tab 3 to set your API key.";
+      return;
+    }
+
+    (await this.tradingService.getTradingInfo()).subscribe((data) => {
       console.log("Trading Info:", data);
       this.tradingInfo = Array.isArray(data) ? data : [];
       this.appStorageService.set("tradingInfo", data);
