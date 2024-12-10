@@ -64,7 +64,8 @@
     <ion-card-content>
       <ion-item>
         <ion-label>Dark mode</ion-label>
-        <ion-toggle></ion-toggle>
+        <ion-toggle [(ngModel)]="paletteToggle" (ionChange)="toggleChange($event)" justify="space-between"
+      >Dark Mode</ion-toggle>
       </ion-item>
     </ion-card-content>
   </ion-card>
