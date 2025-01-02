@@ -1,8 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Trading212Service } from "src/app/api/trading212.service";
 import { AppStorageService } from "../app-storage.service";
-import { Chart } from "chart.js";
-
 import { trading212_response_all_open_positions } from "../../app/model/trading_212_response";
 
 @Component({
@@ -16,12 +14,20 @@ export class Tab1Page implements OnInit {
   overallHolding = 0;
   warningMessage: string = "";
 
+
+
   constructor(
     private tradingService: Trading212Service,
-    private appStorageService: AppStorageService
-  ) {}
+    private appStorageService: AppStorageService,
+
+  ) {
+  }
 
   async ngOnInit(): Promise<void> {
+    await this.loadData();
+  }
+
+  async loadData(): Promise<void> {
     const apiKey = await this.tradingService.getApiKey();
     if (!apiKey) {
       this.warningMessage =
@@ -35,6 +41,12 @@ export class Tab1Page implements OnInit {
       this.appStorageService.set("tradingInfo", data);
       this.calculateTotalValue();
       this.calculateOverallHolding();
+    });
+  }
+
+  doRefresh(event: any) {
+    this.loadData().then(() => {
+      event.target.complete();
     });
   }
 
@@ -76,47 +88,5 @@ export class Tab1Page implements OnInit {
     }
   }
 
-  enderChart(): void {
-    const ctx = document.getElementById("doughnutChart") as HTMLCanvasElement;
-    if (ctx) {
-      new Chart(ctx, {
-        type: "doughnut",
-        data: {
-          labels: this.tradingInfo.map((stock) => stock.ticker),
-          datasets: [
-            {
-              label: "Stock Distribution",
-              data: this.tradingInfo.map(
-                (stock) => stock.quantity * stock.currentPrice
-              ),
-              backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#4BC0C0",
-                "#9966FF",
-                "#FF9F40",
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#4BC0C0",
-                "#9966FF",
-                "#FF9F40",
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#4BC0C0",
-                "#9966FF",
-                "#FF9F40",
-              ],
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-        },
-      });
-    }
-  }
+
 }

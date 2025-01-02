@@ -1,15 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Overview
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Overview</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -25,20 +30,34 @@
       <h2>Stocks Distribution</h2>
     </ion-card-header>
     <ion-card-content>
-      <canvas id="doughnutChart"></canvas>
+     
     </ion-card-content>
   </ion-card>
 
-  <ion-list [inset]="true">
-    <ion-list-header>
-      <ion-label>212 stocks</ion-label>
-    </ion-list-header>
-    
-    <ion-item *ngFor="let info of tradingInfo">
-      <ion-label>Ticker: {{ info.ticker }}<br>
-        Current Price: {{ info.currentPrice }}<br>
-        Quantity: {{ info.quantity }}</ion-label>
-    </ion-item>
-  </ion-list>
+  <ion-accordion-group>
+    <ion-accordion *ngFor="let info of tradingInfo">
+      <ion-item slot="header">
+        <div class="quantity">
+          ⚖️ <br>
+          {{ info.quantity | number:'1.1-1' }}
+        </div>
+        <ion-label class="stock_code">
+          {{ info.ticker }}
+        </ion-label>
+        <div class="value">
+          {{ info.currentPrice * info.quantity | currency }}
+        </div>
+      </ion-item>
+      <div class="ion-padding" slot="content">
+        <div>
+          Percentage Change: {{ ((info.currentPrice - info.averagePrice) / info.averagePrice) * 100 | number:'1.0-2' }}%
+          Current Price: {{ info.currentPrice }} <br>
+          Average price: {{ info.averagePrice }}
+
+          
+        </div>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
 
 </ion-content>
