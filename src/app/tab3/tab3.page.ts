@@ -8,18 +8,20 @@ import { AppStorageService } from "../app-storage.service";
 })
 export class Tab3Page implements OnInit {
   apiKey: string = "";
+  xtb_credentials: { xtb_userId: string; xtb_password: string } = {xtb_userId: "", xtb_password: ""} ;
   paletteToggle = false;
+
 
   constructor(private appStorageService: AppStorageService) {}
 
   async ngOnInit() {
     this.apiKey = (await this.appStorageService.getApiKey()) || "";
+    this.xtb_credentials.xtb_userId = (await this.appStorageService.getXtbUserId()) || "";
 
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)");
-    // Initialize the dark palette based on the initial
-    // value of the prefers-color-scheme media query
+    const prefersDark = window.matchMedia("(prefers-color-scheme: light)");
+    
     this.initializeDarkPalette(prefersDark.matches);
-    // Listen for changes to the prefers-color-scheme media query
+
     prefersDark.addEventListener("change", (mediaQuery) =>
       this.initializeDarkPalette(mediaQuery.matches)
     );
@@ -41,5 +43,13 @@ export class Tab3Page implements OnInit {
   async saveApiKey() {
     await this.appStorageService.setApiKey(this.apiKey);
     console.log("API Key saved: ", this.apiKey);
+  }
+
+  async saveXtbCredentials() {
+    await this.appStorageService.setXtbCredentials(
+      this.xtb_credentials.xtb_userId,
+      this.xtb_credentials.xtb_password
+    );
+    console.log("Credentials saved: ", this.xtb_credentials);
   }
 }
