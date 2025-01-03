@@ -20,44 +20,111 @@
 
   <ion-card>
     <ion-card-header>
-      <h2>Total Value: {{ totalValue | currency }}</h2>
-      <h2>Overall Holding: {{ overallHolding | currency }}</h2>
+      <h2>Total Value: {{ trading_total_value + xtb_total_value | currency }}</h2>
     </ion-card-header>     
 </ion-card>
 
-<ion-card>
-    <ion-card-header>
-      <h2>Stocks Distribution</h2>
-    </ion-card-header>
-    <ion-card-content>
+<ion-segment style="width: 100%; justify-content: center; overflow-x: visible;" scrollable="true">
+  <ion-segment-button value="first" content-id="first">
+    <ion-label>Trading 212</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="second" content-id="second">
+    <ion-label>XTB</ion-label>
+  </ion-segment-button>
+
+</ion-segment>
+
+
+<ion-segment-view>
+  <ion-segment-content id="first">
+    
+    
+    <ion-accordion-group>
+      <div class = "total_value">
+      
+        {{ trading_total_value | currency }}
      
-    </ion-card-content>
-  </ion-card>
+    </div>
 
-  <ion-accordion-group>
-    <ion-accordion *ngFor="let info of tradingInfo">
-      <ion-item slot="header">
-        <div class="quantity">
-          ⚖️ <br>
-          {{ info.quantity | number:'1.1-1' }}
-        </div>
-        <ion-label class="stock_code">
-          {{ info.ticker }}
-        </ion-label>
-        <div class="value">
-          {{ info.currentPrice * info.quantity | currency }}
-        </div>
-      </ion-item>
-      <div class="ion-padding" slot="content">
-        <div>
-          Percentage Change: {{ ((info.currentPrice - info.averagePrice) / info.averagePrice) * 100 | number:'1.0-2' }}%
-          Current Price: {{ info.currentPrice }} <br>
-          Average price: {{ info.averagePrice }}
+      <ion-accordion *ngFor="let info of tradingInfo">
+        <ion-item slot="header">
+         
+          <ion-label class="stock_code">
+            {{info.ticker}} <br>
+            <div class="quantity">
+              ⚖️ {{ info.quantity | number:'1.1-1' }} / {{info.currentPrice | currency}}
+            </div>
+          </ion-label>
+          <div class="value">
+            {{ info.currentPrice * info.quantity | currency }} <br>
+            <div class="percentage-change">
+              <span [ngClass]="{'positive': ((info.currentPrice - info.averagePrice) / info.averagePrice) * 100 >= 0, 'negative': ((info.currentPrice - info.averagePrice) / info.averagePrice) * 100 < 0}">
+                {{ ((info.currentPrice - info.averagePrice) / info.averagePrice) * 100 | number:'1.0-2' }}%
+              </span>
+            </div>
+            
 
-          
+          </div>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <div class="stock-details">
+            <div class="percentage-change-detail">
+              <span [ngClass]="{'positive': ((info.currentPrice - info.averagePrice) / info.averagePrice) * 100 >= 0, 'negative': ((info.currentPrice - info.averagePrice) / info.averagePrice) * 100 < 0}">
+                {{ ((info.currentPrice - info.averagePrice) / info.averagePrice) * 100 | number:'1.0-2' }}%
+              </span>
+            </div>
+            <div class="current-price">
+              Current Price: {{ info.currentPrice | number:'1.1-1' }}
+            </div>
+            <div class="average-price">
+              Average Price: {{ info.averagePrice | number:'1.1-1' }}
+            </div>
+          </div>
         </div>
-      </div>
-    </ion-accordion>
-  </ion-accordion-group>
+      </ion-accordion>
+    </ion-accordion-group>
 
-</ion-content>
+
+  </ion-segment-content>
+
+  <ion-segment-content id="second">
+
+
+
+
+
+    <ion-accordion-group>
+      <div class = "total_value">
+      
+        {{ xtb_total_value | currency }}
+     
+    </div>
+
+      <ion-accordion *ngFor="let xtb_trade of xtbInfo">
+        <ion-item slot="header">
+         
+          <ion-label class="stock_code">
+            {{xtb_trade.symbol}} <br>
+            <div class="quantity">
+              ⚖️ {{ xtb_trade.volume | number:'1.1-1' }} / {{xtb_trade.open_price | currency}}
+            </div>
+          </ion-label>
+          <div class="value">
+            {{ xtb_trade.open_price  * xtb_trade.volume| currency }} <br>
+            <div class="percentage-change">
+              <span [ngClass]="{'positive': xtb_trade.profit >= 0, 'negative': xtb_trade.profit  < 0}">
+                {{xtb_trade.profit  | number:'1.0-2' }}%
+              </span>
+            </div>
+            
+
+          </div>
+        </ion-item>
+
+        
+        
+      </ion-accordion>
+    </ion-accordion-group>
+  </ion-segment-content>
+  
+

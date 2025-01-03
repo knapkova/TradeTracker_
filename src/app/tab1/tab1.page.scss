@@ -1,34 +1,29 @@
 ion-label.stock_code {
-    font-size: 2.5em;
+    font-size: 1.5em;
     font-weight: lighter;
-    color: #333;
     margin-left: 10px;
+    align-items: center;
   }
   
   div.quantity {
-    font-size: 1em;
+    font-size: 0.5em;
     font-weight: bold;
     border-radius: 15px;
-    padding: 10px;
+    padding: 1px;
     margin: 5px;
     text-align: center;
-    background-color: rgba(247, 150, 164, 0.481);
+    background-color: rgba(247, 150, 165, 0.305);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   div.value {
     font-size: 1.5em;
-    color: #4caf50;
     margin-left: auto;
     margin-right: 10px;
   }
   
   ion-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 2px;
   }
   
   ion-item:hover {
@@ -41,16 +36,73 @@ ion-label.stock_code {
   
   ion-accordion {
     margin-bottom: 10px;
-    border-radius: 10px;
+    border-radius: 3px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  ion-accordion ion-item {
-    background-color: #fff;
-  }
+
   
   ion-accordion .ion-padding {
-    background-color: #f7f7f7;
     padding: 15px;
+  }
+
+
+  .stock-details {
+    padding: 5px;
+    background-color: #f9f9f95f;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  .percentage-change {
+    font-size: 0.5em;
+    margin-bottom: 5px;
+    text-align: right;
+  }
+
+  .percentage-change-detail {
+    font-size: 1.5em;
+    text-align: center;
+  }
+  
+  .percentage-change .positive {
+    color: #4caf50; 
+  }
+  
+  .percentage-change .negative {
+    color: #f44336; 
+  }
+  
+  .current-price, .average-price {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+  
+  .current-price {
+    color: #2196f3; 
+  }
+  
+  .average-price {
+    color: #ff9800; 
+  }
+
+  .total_value {
+    font-size: 1.5em;
+    text-align: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .total_value h2 {
+    margin: 0;
+    font-weight: normal;
+  }
+
+  ion-segment {
+    --background: lightcoral;
   }
