@@ -31,4 +31,21 @@ export class AppStorageService {
   public async getApiKey() {
     return await this.get("trading_api_key");
   }
+
+  // for xtb
+  // Method to store XTB login credentials
+  public async setXtbCredentials(userId: string, password: string) {
+    await this.set("xtb_user_id", userId);
+    await this.set("xtb_password", password);
+  }
+
+  // Method to retrieve XTB user ID
+  public async getXtbUserId() {
+    return await this.get("xtb_user_id");
+  }
+
+  // Method to retrieve XTB password
+  public async getXtbPassword() {
+    return await this.get("xtb_password");
+  }
 }

@@ -1,7 +1,5 @@
 {
   "name": "TradeTracker",
-  "integrations": {
-    "capacitor": {}
-  },
+  "integrations": {},
   "type": "angular"
 }

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  trading_api_key: '23281228ZNZFuvyQLDdRfbVgWHlOzmpjdLIbx',
-  trading_api_url: '/api/v0/equity/portfolio',
+  trading_api_key: "",
+  trading_api_url: "/api/v0/equity/portfolio"
 };
 
 /*
