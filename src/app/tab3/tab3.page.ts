@@ -17,6 +17,8 @@ export class Tab3Page implements OnInit {
   async ngOnInit() {
     this.apiKey = (await this.appStorageService.getApiKey()) || "";
     this.xtb_credentials.xtb_userId = (await this.appStorageService.getXtbUserId()) || "";
+    this.xtb_credentials.xtb_password = (await this.appStorageService.getXtbPassword()) || "";
+
 
     const prefersDark = window.matchMedia("(prefers-color-scheme: light)");
     
@@ -26,16 +28,13 @@ export class Tab3Page implements OnInit {
       this.initializeDarkPalette(mediaQuery.matches)
     );
   }
-  // Check/uncheck the toggle and update the palette based on isDark
   initializeDarkPalette(isDark: boolean) {
     this.paletteToggle = isDark;
     this.toggleDarkPalette(isDark);
   }
-  // Listen for the toggle check/uncheck to toggle the dark palette
   toggleChange(ev: any) {
     this.toggleDarkPalette(ev.detail.checked);
   }
-  // Add or remove the "ion-palette-dark" class on the html element
   toggleDarkPalette(shouldAdd: boolean) {
     document.documentElement.classList.toggle("ion-palette-dark", shouldAdd);
   }
@@ -50,6 +49,6 @@ export class Tab3Page implements OnInit {
       this.xtb_credentials.xtb_userId,
       this.xtb_credentials.xtb_password
     );
-    console.log("Credentials saved: ", this.xtb_credentials);
+    // console.log("Credentials saved: ", this.xtb_credentials);
   }
 }
